@@ -201,6 +201,8 @@ public class ListaEnlazada<E> {
             throw new PosicionException("Error en obtener dato: La lista esta vacia, por endde no hay esa posicion");
         }
     }
+    
+    
 
 //    public static void main(String[] args) {
 //        ListaEnlazada<Double> lista = new ListaEnlazada<>();

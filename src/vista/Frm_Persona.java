@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ *jLabel4
  * @author Usuario
  */
 public class Frm_Persona extends javax.swing.JDialog {
@@ -18,7 +18,7 @@ public class Frm_Persona extends javax.swing.JDialog {
    
 
     /**
-     * Creates new form FrmEstudiante
+     * Creates new form FrmEstujLabel4diante
      */
     public Frm_Persona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -227,6 +227,11 @@ public class Frm_Persona extends javax.swing.JDialog {
         jPanel2.setBounds(370, 20, 320, 190);
 
         cbatributobuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "todos", "nombre", "apellido", "cedula", "materia" }));
+        cbatributobuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbatributobuscarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbatributobuscar);
         cbatributobuscar.setBounds(40, 230, 90, 30);
         jPanel1.add(txbuscar);
@@ -259,6 +264,10 @@ public class Frm_Persona extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         buscar();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cbatributobuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbatributobuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbatributobuscarActionPerformed
 
     /**
      * @param args the command line arguments
