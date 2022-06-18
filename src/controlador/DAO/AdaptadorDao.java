@@ -46,7 +46,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     public void guardar(T dato) throws Exception {
         try {
             ListaEnlazadaServices<T> lista = listar();
-            lista.insertarAlInicio(dato);
+            lista.insertarAlFinal(dato);
 
             xstream.toXML(lista.getLista(), new FileOutputStream(URL));
         } catch (Exception e) {

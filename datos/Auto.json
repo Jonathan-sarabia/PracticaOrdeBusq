@@ -1,0 +1,1 @@
+{"lista":{"cabecera":{"dato":{"@class":"modelo.Auto","modelo":"Gran Vitara","color":"negro","placa":"Gran Vitara"},"siguiente":{"dato":{"@class":"modelo.Auto","modelo":"Toyota","color":"azul","placa":"AIU-2933"}}},"size":2}}
