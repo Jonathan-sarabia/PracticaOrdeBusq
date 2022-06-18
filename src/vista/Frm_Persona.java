@@ -5,10 +5,9 @@
  */
 package vista;
 
-import Controlador.Dao.EstudianteDao;
-import Lista.controlador.Lista;
+
 import javax.swing.JOptionPane;
-import vista.modelo.ModeloTablaEstudiante;
+
 
 /**
  *
@@ -16,8 +15,7 @@ import vista.modelo.ModeloTablaEstudiante;
  */
 public class Frm_Persona extends javax.swing.JDialog {
 
-    private ModeloTablaEstudiante mo = new ModeloTablaEstudiante();
-    private EstudianteDao estudianteao = new EstudianteDao();
+   
 
     /**
      * Creates new form FrmEstudiante
@@ -29,7 +27,7 @@ public class Frm_Persona extends javax.swing.JDialog {
     }
 
     private void limpiar() {
-        estudianteao.setEstudiante(null);
+//        estudianteao.setEstudiante(null);
         cargarTabla();
         txapellido.setText("");
         txnombre.setText("");
@@ -38,26 +36,26 @@ public class Frm_Persona extends javax.swing.JDialog {
     }
 
     private void cargarTabla() {
-        mo.setLista(estudianteao.listar());
-        jTable1.setModel(mo);
-        jTable1.updateUI();
+//        mo.setLista(estudianteao.listar());
+//        jTable1.setModel(mo);
+//        jTable1.updateUI();
     }
 
     private void guardar() {
-        if (validar()) {
-            estudianteao.getEstudiante().setNombre(txnombre.getText());
-            estudianteao.getEstudiante().setApellido(txapellido.getText());
-            estudianteao.getEstudiante().setCedula(txcedula.getText());
-            estudianteao.getEstudiante().setMateria(txmateria.getText());
-            if (estudianteao.guardar()) {
-                JOptionPane.showMessageDialog(null, "Se ha guardado");
-                this.limpiar();
-            } else {
-                JOptionPane.showMessageDialog(null, "No se ha guardado");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos");
-        }
+//        if (validar()) {
+//            estudianteao.getEstudiante().setNombre(txnombre.getText());
+//            estudianteao.getEstudiante().setApellido(txapellido.getText());
+//            estudianteao.getEstudiante().setCedula(txcedula.getText());
+//            estudianteao.getEstudiante().setMateria(txmateria.getText());
+//            if (estudianteao.guardar()) {
+//                JOptionPane.showMessageDialog(null, "Se ha guardado");
+//                this.limpiar();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "No se ha guardado");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+//        }
     }
 
     private boolean validar() {
@@ -65,55 +63,55 @@ public class Frm_Persona extends javax.swing.JDialog {
     }
 
     private void ordenar() {
-        Lista aux;
-        int select = cbdireccion.getSelectedIndex();
-        int select1 = cbmetodo.getSelectedIndex();
-        String atributo = cbatributo.getSelectedItem().toString();
-        if (select1 == 0) {
-            aux = estudianteao.listar().QuisortClase(atributo, 0, estudianteao.listar().tamanio() - 1, select + 1);
-        } else {
-            aux = estudianteao.listar().ShellClase(select + 1, atributo);
-        }
-        mo.setLista(aux);
-        jTable1.setModel(mo);
-        jTable1.updateUI();
+//        Lista aux;
+//        int select = cbdireccion.getSelectedIndex();
+//        int select1 = cbmetodo.getSelectedIndex();
+//        String atributo = cbatributo.getSelectedItem().toString();
+//        if (select1 == 0) {
+//            aux = estudianteao.listar().QuisortClase(atributo, 0, estudianteao.listar().tamanio() - 1, select + 1);
+//        } else {
+//            aux = estudianteao.listar().ShellClase(select + 1, atributo);
+//        }
+//        mo.setLista(aux);
+//        jTable1.setModel(mo);
+//        jTable1.updateUI();
     }
 
     private void buscar() {
-        int select = cbatributobuscar.getSelectedIndex();
-        String atributo = cbatributobuscar.getSelectedItem().toString();
-        Lista aux;
-        if (txbuscar.getText().isEmpty() && select != 0) {
-            JOptionPane.showMessageDialog(null, "Llene el campo necesario");
-        } else {
-            switch (select) {
-                case 0:
-                    aux = estudianteao.listar();
-                    break;
-                case 1:
-                    aux = (Lista) mo.getLista().BusquedaBinariaClase(txbuscar.getText(), atributo);
-                    break;
-
-                case 2:
-                    aux = (Lista) mo.getLista().BusquedaBinariaClase(txbuscar.getText(), atributo);
-                    break;
-
-                case 3:
-                    aux = (Lista) mo.getLista().BusquedaBinariaClase(txbuscar.getText(), atributo);
-                    break;
-
-                default:
-                    aux = mo.getLista();
-            }
-            if (aux == null) {
-                JOptionPane.showMessageDialog(null, "No se ha encontrado el elemento o ordene primero la lista para buscar el elemento");
-            } else {
-                mo.setLista(aux);
-                jTable1.setModel(mo);
-                jTable1.updateUI();
-                txbuscar.setText("");
-            }
-        }
+//        int select = cbatributobuscar.getSelectedIndex();
+//        String atributo = cbatributobuscar.getSelectedItem().toString();
+//        Lista aux;
+//        if (txbuscar.getText().isEmpty() && select != 0) {
+//            JOptionPane.showMessageDialog(null, "Llene el campo necesario");
+//        } else {
+//            switch (select) {
+//                case 0:
+//                    aux = estudianteao.listar();
+//                    break;
+//                case 1:
+//                    aux = (Lista) mo.getLista().BusquedaBinariaClase(txbuscar.getText(), atributo);
+//                    break;
+//
+//                case 2:
+//                    aux = (Lista) mo.getLista().BusquedaBinariaClase(txbuscar.getText(), atributo);
+//                    break;
+//
+//                case 3:
+//                    aux = (Lista) mo.getLista().BusquedaBinariaClase(txbuscar.getText(), atributo);
+//                    break;
+//
+//                default:
+//                    aux = mo.getLista();
+//            }
+//            if (aux == null) {
+//                JOptionPane.showMessageDialog(null, "No se ha encontrado el elemento o ordene primero la lista para buscar el elemento");
+//            } else {
+//                mo.setLista(aux);
+//                jTable1.setModel(mo);
+//                jTable1.updateUI();
+//                txbuscar.setText("");
+//            }
+//        }
     }
 
     /**

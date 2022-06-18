@@ -5,8 +5,7 @@
  */
 package controlador.DAO;
 
-import controlador.tda.cola.ColaServices;
-import controlador.tda.lista.ListaEnlazada;
+
 import controlador.tda.lista.ListaEnlazadaServices;
 
 /**
@@ -16,5 +15,5 @@ import controlador.tda.lista.ListaEnlazadaServices;
 public interface InterfazDao <T> {
     public void guardar(T dato) throws Exception;
     public void modificar(T dato, Integer pos) throws Exception;
-    public ColaServices<T> listar();
+    public ListaEnlazadaServices<T> listar();
 }
