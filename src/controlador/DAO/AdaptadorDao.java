@@ -8,19 +8,16 @@ package controlador.DAO;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
-
-import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.NullPermission;
 import com.thoughtworks.xstream.security.PrimitiveTypePermission;
-import com.thoughtworks.xstream.security.TypePermission;
 import controlador.DAO.InterfazDao;
+import controlador.tda.lista.ListaEnlazada;
+import controlador.tda.lista.ListaEnlazadaServices;
 
-import controlador.tda.cola.ColaServices;
-import controlador.tda.cola.Cola;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
+
 
 /**
  *
@@ -36,7 +33,7 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         this.clazz = clazz;
         URL += this.clazz.getSimpleName() + ".json";
         xstream = new XStream(new JettisonMappedXmlDriver());
-        xstream.alias("lista", Cola.class);
+        xstream.alias("lista", ListaEnlazada.class);
         xstream.setMode(XStream.NO_REFERENCES);
 
         xstream.addPermission(AnyTypePermission.ANY);
@@ -48,10 +45,10 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     @Override
     public void guardar(T dato) throws Exception {
         try {
-            ColaServices<T> lista = listar();
-            lista.queue(dato);
+            ListaEnlazadaServices<T> lista = listar();
+            lista.insertarAlInicio(dato);
 
-            xstream.toXML(lista.getCola(), new FileOutputStream(URL));
+            xstream.toXML(lista.getLista(), new FileOutputStream(URL));
         } catch (Exception e) {
         }
     }
@@ -59,19 +56,19 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
     @Override
     public void modificar(T dato, Integer pos) throws Exception {
         try {
-            ColaServices<T> lista = listar();
-        lista.getCola().modificarDato(pos, dato);
-        xstream.toXML(lista.getCola(), new FileOutputStream(URL));
+            ListaEnlazadaServices<T> lista = listar();
+        lista.getLista().modificarDato(pos, dato);
+        xstream.toXML(lista.getLista(), new FileOutputStream(URL));
         } catch (Exception e) {
         }
     }
 
     @Override
-    public ColaServices<T> listar() {
+    public ListaEnlazadaServices<T> listar() {
 
-        ColaServices<T> listaAux = new ColaServices<T>(0);
+        ListaEnlazadaServices<T> listaAux = new ListaEnlazadaServices<T>();
         try {
-            listaAux.setCola((Cola<T>) xstream.fromXML(new FileReader(URL)));
+            listaAux.setLista((ListaEnlazada<T>) xstream.fromXML(new FileReader(URL)));
         } catch (Exception e) {
             System.out.println("ERROR " + e);
             e.printStackTrace();
