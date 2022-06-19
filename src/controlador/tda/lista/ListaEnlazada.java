@@ -6,6 +6,8 @@
 package controlador.tda.lista;
 
 import controlador.tda.lista.exception.PosicionException;
+import modelo.Auto;
+import static vista.FrmAuto.generarPlaca;
 
 
 
@@ -204,27 +206,7 @@ public class ListaEnlazada<E> {
     
     
 
-//    public static void main(String[] args) {
-//        ListaEnlazada<Double> lista = new ListaEnlazada<>();
-//        lista.insertar(67.3);
-//        lista.insertar(6.6);
-//        lista.insertar(16.0);
-//        try {
-//            lista.insertar(90.0, 2);
-//            System.out.println("La ongitud de la lista es " + lista.getSize());
-//            lista.imprimir();
-//            System.out.println("El elemento de la lista en la pisicion 1 es: " + lista.obtenerDato(3));
-//            lista.eliminarDato(lista.getSize() - 1);
-//            System.out.println("La ongitud de la lista es " + lista.getSize());
-//            lista.modificarDato(1, 13.0);
-//            lista.imprimir();
-//            lista.vaciar();
-//            System.out.println("La ongitud de la lista es " + lista.getSize());
-//            lista.imprimir();
-//            
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//
-//    }
+    
+
+    
 }

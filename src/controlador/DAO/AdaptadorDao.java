@@ -75,5 +75,80 @@ public class AdaptadorDao<T> implements InterfazDao<T> {
         }
         return listaAux;
     }
+    
+//    public ListaEnlazadaServices<T> QuisortClase(String atributo, int primero, int ultimo, Integer direccion) {
+//        try {
+//            int i, j, central;
+//            Object pivote;
+//            central = (primero + ultimo) / 2;
+//            ListaEnlazada aux= new ListaEnlazada();
+//            pivote = aux.obtenerDato(central);
+//            i = primero;
+//            j = ultimo;
+//            if (pivote instanceof Number) {
+//                do {
+//                    if (direccion.intValue() == Lista.ASCENDENTE) {
+//                        while (((Number) testReflect(consultarDatoPosicion(i), atributo)).doubleValue() < ((Number) testReflect(consultarDatoPosicion(central), atributo)).doubleValue()) {
+//                            i++;
+//                        }
+//                        while (((Number) testReflect(consultarDatoPosicion(j), atributo)).doubleValue() > ((Number) testReflect(consultarDatoPosicion(central), atributo)).doubleValue()) {
+//                            j--;
+//                        }
+//                    } else {
+//                        while (((Number) testReflect(consultarDatoPosicion(i), atributo)).doubleValue() > ((Number) testReflect(consultarDatoPosicion(central), atributo)).doubleValue()) {
+//                            i++;
+//                        }
+//                        while (((Number) testReflect(consultarDatoPosicion(j), atributo)).doubleValue() < ((Number) testReflect(consultarDatoPosicion(central), atributo)).doubleValue()) {
+//                            j--;
+//                        }
+//                    }
+//
+//                    if (i <= j) {
+//                        T auxiliar = consultarDatoPosicion(i);
+//                        modificarPorPos(consultarDatoPosicion(j), i);
+//                        modificarPorPos(auxiliar, j);
+//                        i++;
+//                        j--;
+//                    }
+//                } while (i <= j);
+//
+//            } else {
+//                do {
+//                    if (direccion.intValue() == Lista.ASCENDENTE) {
+//                        while (testReflect(consultarDatoPosicion(central), atributo).toString().compareTo(testReflect(consultarDatoPosicion(i), atributo).toString()) > 0) {
+//                            i++;
+//                        }
+//                        while (testReflect(consultarDatoPosicion(j), atributo).toString().compareTo(testReflect(consultarDatoPosicion(central), atributo).toString()) > 0) {
+//                            j--;
+//                        }
+//                    } else {
+//                        while (testReflect(consultarDatoPosicion(central), atributo).toString().compareTo(testReflect(consultarDatoPosicion(i), atributo).toString()) < 0) {
+//                            i++;
+//                        }
+//                        while (testReflect(consultarDatoPosicion(j), atributo).toString().compareTo(testReflect(consultarDatoPosicion(central), atributo).toString()) < 0) {
+//                            j--;
+//                        }
+//                    }
+//                    if (i <= j) {
+//                        T auxiliar = consultarDatoPosicion(i);
+//                        modificarPorPos(consultarDatoPosicion(j), i);
+//                        modificarPorPos(auxiliar, j);
+//                        i++;
+//                        j--;
+//                    }
+//                } while (i <= j);
+//
+//            }
+//            if (primero < j) {
+//                QuisortClase(atributo, primero, j, direccion);
+//            }
+//            if (i < ultimo) {
+//                QuisortClase(atributo, i, ultimo, direccion);
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Error quiscksort" + e);
+//        }
+//        return this;
+//    }
 
 }
