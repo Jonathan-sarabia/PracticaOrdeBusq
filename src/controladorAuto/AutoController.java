@@ -87,7 +87,7 @@ public class AutoController extends AdaptadorDao<Auto> {
 
           String[] colores = {"Blanco", "Negro", "Azul", "Amarillo", "Tomate", "Gris", "Verde", "Magenta", "Cafe", "Plata"};
                int i=0;
-          while (i<100) {    
+          while (i<1000) {    
                try {
                     ac.getAuto().setColor(colores[(int) (Math.floor(Math.random() * ((colores.length - 1) - 0 + 1) + 0))]);
                     ac.getAuto().setModelo(marcas[(int) (Math.floor(Math.random() * ((marcas.length - 1) - 0 + 1) + 0))]);

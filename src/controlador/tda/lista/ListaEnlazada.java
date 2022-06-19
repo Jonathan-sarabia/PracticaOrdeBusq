@@ -6,6 +6,7 @@
 package controlador.tda.lista;
 
 import controlador.tda.lista.exception.PosicionException;
+import java.lang.reflect.Field;
 import modelo.Auto;
 import static vista.FrmAuto.generarPlaca;
 
@@ -21,8 +22,10 @@ import static vista.FrmAuto.generarPlaca;
 public class ListaEnlazada<E> {
     
     private NodoLista<E> cabecera;
-    
+     private Class clazz;
     private Integer size;
+      public static final Integer ASCENDENTE = 1;
+    public static final Integer DESENDENTE = 2;
  
     public NodoLista<E> getCabecera() {
         return cabecera;
@@ -31,6 +34,15 @@ public class ListaEnlazada<E> {
     public void setCabecera(NodoLista<E> cabecera) {
         this.cabecera = cabecera;
     }
+
+    public Class getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Class clazz) {
+        this.clazz = clazz;
+    }
+    
     
     /**
      * Constructor de la clase se inicializa la lista en null y el tamanio en 0
@@ -202,6 +214,93 @@ public class ListaEnlazada<E> {
         } else {
             throw new PosicionException("Error en obtener dato: La lista esta vacia, por endde no hay esa posicion");
         }
+    }
+        private Field getField(String nombre) {
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.getName().equalsIgnoreCase(nombre)) {
+                field.setAccessible(true);
+                return field;
+            }
+        }
+        return null;
+    }
+    
+    public Object testReflect(E dato, String atributo) throws Exception {
+        return this.getField(atributo).get(dato);
+    }
+    
+        public ListaEnlazada<E> QuisortClase(String atributo, int primero, int ultimo, Integer direccion) {
+        try {
+            int i, j, central;
+            Object pivote;
+            central = (primero + ultimo) / 2;
+            pivote = obtenerDato(central);
+            i = primero;
+            j = ultimo;
+            if (pivote instanceof Number) {
+                do {
+                    if (direccion.intValue() == ListaEnlazada.ASCENDENTE) {
+                        while (((Number) testReflect(obtenerDato(central), atributo)).doubleValue() >= ((Number) testReflect(obtenerDato(i), atributo)).doubleValue()) {
+                            i++;
+                        }
+                        while (((Number) testReflect(obtenerDato(j), atributo)).doubleValue() > ((Number) testReflect(obtenerDato(central), atributo)).doubleValue()) {
+                            j--;
+                        }
+                    } else {
+                        while (((Number) testReflect(obtenerDato(i), atributo)).doubleValue() > ((Number) testReflect(obtenerDato(central), atributo)).doubleValue()) {
+                            i++;
+                        }
+                        while (((Number) testReflect(obtenerDato(j), atributo)).doubleValue() < ((Number) testReflect(obtenerDato(central), atributo)).doubleValue()) {
+                            j--;
+                        }
+                    }
+
+                    if (i <= j) {
+                        E auxiliar = obtenerDato(i);
+                        modificarDato( i,obtenerDato(j));
+                        modificarDato( j,auxiliar);
+                        i++;
+                        j--;
+                    }
+                } while (i <= j);
+
+            } else {
+                do {
+                    if (direccion.intValue() == ListaEnlazada.ASCENDENTE) {
+                        while (testReflect(obtenerDato(central), atributo).toString().compareTo(testReflect(obtenerDato(i), atributo).toString()) > 0) {
+                            i++;
+                        }
+                        while (testReflect(obtenerDato(j), atributo).toString().compareTo(testReflect(obtenerDato(central), atributo).toString()) > 0) {
+                            j--;
+                        }
+                    } else {
+                        while (testReflect(obtenerDato(central), atributo).toString().compareTo(testReflect(obtenerDato(i), atributo).toString()) < 0) {
+                            i++;
+                        }
+                        while (testReflect(obtenerDato(j), atributo).toString().compareTo(testReflect(obtenerDato(central), atributo).toString()) < 0) {
+                            j--;
+                        }
+                    }
+                    if (i <= j) {
+                        E auxiliar = obtenerDato(i);
+                        modificarDato( i,obtenerDato(j));
+                        modificarDato( j,auxiliar);
+                        i++;
+                        j--;
+                    }
+                } while (i <= j);
+
+            }
+            if (primero < j) {
+                QuisortClase(atributo, primero, j, direccion);
+            }
+            if (i < ultimo) {
+                QuisortClase(atributo, i, ultimo, direccion);
+            }
+        } catch (Exception e) {
+            System.out.println("Error quiscksort" + e);
+        }
+        return this;
     }
     
     
