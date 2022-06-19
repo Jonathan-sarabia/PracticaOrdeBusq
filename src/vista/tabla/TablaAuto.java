@@ -32,14 +32,15 @@ public class TablaAuto extends AbstractTableModel{
 
      @Override
      public int getColumnCount() {
-          return 3;
+          return 4;
      }
      @Override
     public String getColumnName(int column) {
         switch(column) {
-            case 0: return "Placa";
-            case 1: return "Modelo";
-            case 2: return "Color";
+            case 0: return "Nro";
+            case 1: return "Placa";
+            case 2: return "Modelo";
+            case 3: return "Color";
             default: return null;
         }
     }
@@ -50,10 +51,12 @@ public class TablaAuto extends AbstractTableModel{
             Auto f = lista.getLista().obtenerDato(rowIndex);
             switch (columnIndex) {
                 case 0:
-                    return f.getPlaca();
+                    return ( rowIndex + 1);
                 case 1:
-                    return f.getModelo();
+                    return f.getPlaca();
                 case 2:
+                    return f.getModelo();
+                case 3:
                     return f.getColor();
                 default:
                     return null;

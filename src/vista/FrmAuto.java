@@ -17,64 +17,66 @@ import vista.tabla.TablaAuto;
  */
 public class FrmAuto extends javax.swing.JFrame {
 
-     private AutoController ac = new AutoController();
-     private TablaAuto ta = new TablaAuto();
+    private AutoController ac = new AutoController();
+    private TablaAuto ta = new TablaAuto();
 
-     /**
-      * Creates new form FrmCine
-      */
-     public FrmAuto() {
-          initComponents();
-          setLocationRelativeTo(null);
-          Limpiar();
-     }
+    /**
+     * Creates new form FrmCine
+     */
+    public FrmAuto() {
+        initComponents();
+        setLocationRelativeTo(null);
+        //Limpiar();
+        //generardatos();
+        //argarTabla();
+    }
 
-     public void Limpiar() {
-          txtColor.setText("");
-          txtModelo.setText("");
-          txtPlaca.setText("");
-          ac.setAuto(null);
-          CargarTabla();
-     }
+    public void Limpiar() {
+        txtColor.setText("");
+        txtModelo.setText("");
+        txtPlaca.setText("");
+        ac.setAuto(null);
+        CargarTabla();
+    }
 
-     public void Agregar() {
-          try {
-               ac.getAuto().setColor(txtColor.getText());
-               ac.getAuto().setModelo(txtModelo.getText());
-               ac.getAuto().setPlaca(txtPlaca.getText());
-               ac.guardar();
-               Limpiar();
-          } catch (Exception e) {
-               System.out.println("erro" + e);
-          }
-     }
+    public void Agregar() {
+        try {
+            ac.getAuto().setColor(txtColor.getText());
+            ac.getAuto().setModelo(txtModelo.getText());
+            ac.getAuto().setPlaca(txtPlaca.getText());
+            ac.guardar();
+            Limpiar();
+        } catch (Exception e) {
+            System.out.println("erro" + e);
+        }
+    }
 
-     public void generardatos() {
-          String[] marcas = {"HONDA", "AUDI", "CHEVROLET", "TOYOTA", "NISSAN", "MERCEDES", "ASTON MARTIN"
-               + "ALFA ROMEO", "BMW", "BYD", "DACIA0", "FERRARI", "FIAT", "FORD", "HYUNDAI", "JEEP", "JAGUAR", "KIA",
-               "LADA", "LAMBORGHINI", "LEXUS", "MASERATI", "MORGAN", "OPEL", "PROSHE", "SEAT", "SMART",
-               "SUSUKI", "TESLA", "VOLKSWAGEN", "VOLVO"};
+    public void generardatos() {
+        String[] marcas = {"HONDA", "AUDI", "CHEVROLET", "TOYOTA", "NISSAN", "MERCEDES", "ASTON MARTIN"
+            + "ALFA ROMEO", "BMW", "BYD", "DACIA0", "FERRARI", "FIAT", "FORD", "HYUNDAI", "JEEP", "JAGUAR", "KIA",
+            "LADA", "LAMBORGHINI", "LEXUS", "MASERATI", "MORGAN", "OPEL", "PROSHE", "SEAT", "SMART",
+            "SUSUKI", "TESLA", "VOLKSWAGEN", "VOLVO"};
 
-          String[] colores = {"Blanco", "Negro", "Azul", "Amarillo", "Tomate", "Gris", "Verde", "Magenta", "Cafe", "Plata"};
-          try {
-               for (int i = 0; i < 1000; i++) {
-                    ac.getAuto().setColor(colores[(int) (Math.floor(Math.random() * ((colores.length - 1) - 0 + 1) + 0))]);
-                    ac.getAuto().setModelo(marcas[(int) (Math.floor(Math.random() * ((marcas.length - 1) - 0 + 1) + 0))]);
-                    ac.getAuto().setPlaca(generarPlaca());
-                    ac.guardar();
-                    Limpiar();
-               }
-               //Limpiar();
-          } catch (Exception e) {
-          }
+        String[] colores = {"Blanco", "Negro", "Azul", "Amarillo", "Tomate", "Gris", "Verde", "Magenta", "Cafe", "Plata"};
+        try {
+            for (int i = 0; i < 1000; i++) {
+                ac.getAuto().setColor(colores[(int) (Math.floor(Math.random() * ((colores.length - 1) - 0 + 1) + 0))]);
+                ac.getAuto().setModelo(marcas[(int) (Math.floor(Math.random() * ((marcas.length - 1) - 0 + 1) + 0))]);
+                ac.getAuto().setPlaca(generarPlaca());
+                ac.guardar();
+                Limpiar();
+            }
+            //Limpiar();
+        } catch (Exception e) {
+        }
 
-     }
+    }
 
-     public void CargarTabla() {
-          ta.setLista(ac.listado());
-          tbl_tabla.setModel(ta);
-          tbl_tabla.updateUI();
-     }
+    public void CargarTabla() {
+        ta.setLista(ac.listado());
+        tbl_tabla.setModel(ta);
+        tbl_tabla.updateUI();
+    }
 //    private void ordenar(){
 //         ListaEnlazada aux;
 //        int select = cbxOrden.getSelectedIndex();
@@ -91,46 +93,46 @@ public class FrmAuto extends javax.swing.JFrame {
 //        jTable1.updateUI();
 //    }
 
-     public static String generarPlaca() {
+    public static String generarPlaca() {
 
-          char placa[] = new char[9];
-          placa[0] = generarConsonante();
-          placa[1] = generarConsonante();
-          placa[2] = generarVocal();
-          placa[3] = '-';
-          placa[4] = generarNumero();
-          placa[5] = generarNumero();
-          placa[6] = generarNumero();
-          // placa[7] = '-';
-          // placa[8] = generarVocal();
+        char placa[] = new char[9];
+        placa[0] = generarConsonante();
+        placa[1] = generarConsonante();
+        placa[2] = generarVocal();
+        placa[3] = '-';
+        placa[4] = generarNumero();
+        placa[5] = generarNumero();
+        placa[6] = generarNumero();
+        // placa[7] = '-';
+        // placa[8] = generarVocal();
 
-          return String.valueOf(placa);
-     }
+        return String.valueOf(placa);
+    }
 
-     public static char generarConsonante() {
-          return generarRandomChar("BCDFGHJKLMNPQRSTVWXYZ");
-     }
+    public static char generarConsonante() {
+        return generarRandomChar("BCDFGHJKLMNPQRSTVWXYZ");
+    }
 
-     public static char generarVocal() {
-          return generarRandomChar("AEIOU");
-     }
+    public static char generarVocal() {
+        return generarRandomChar("AEIOU");
+    }
 
-     public static char generarNumero() {
-          return generarRandomChar("0123456789");
-     }
+    public static char generarNumero() {
+        return generarRandomChar("0123456789");
+    }
 
-     private static char generarRandomChar(String str) {
-          char caracteres[] = str.toCharArray();
-          int index = (int) (Math.random() * caracteres.length);
-          return caracteres[index];
-     }
+    private static char generarRandomChar(String str) {
+        char caracteres[] = str.toCharArray();
+        int index = (int) (Math.random() * caracteres.length);
+        return caracteres[index];
+    }
 
-     /**
-      * This method is called from within the constructor to initialize the
-      * form. WARNING: Do NOT modify this code. The content of this method is
-      * always regenerated by the Form Editor.
-      */
-     @SuppressWarnings("unchecked")
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
      // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
      private void initComponents() {
 
@@ -319,58 +321,59 @@ public class FrmAuto extends javax.swing.JFrame {
      }// </editor-fold>//GEN-END:initComponents
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
     private void cbxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_cbxTipoActionPerformed
 
      private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-          Agregar();
-          //generardatos();
+         //0//Agregar();
+         //CargarTabla();
+         generardatos();
      }//GEN-LAST:event_btnGuardarActionPerformed
 
-     /**
-      * @param args the command line arguments
-      */
-     public static void main(String args[]) {
-          /* Set the Nimbus look and feel */
-          //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-          /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-           */
-          try {
-               for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                         javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                         break;
-                    }
-               }
-          } catch (ClassNotFoundException ex) {
-               java.util.logging.Logger.getLogger(FrmAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (InstantiationException ex) {
-               java.util.logging.Logger.getLogger(FrmAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex) {
-               java.util.logging.Logger.getLogger(FrmAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-               java.util.logging.Logger.getLogger(FrmAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          }
-          //</editor-fold>
-          //</editor-fold>
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FrmAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrmAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrmAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
 
-          /* Create and display the form */
-          java.awt.EventQueue.invokeLater(new Runnable() {
-               public void run() {
-                    new FrmAuto().setVisible(true);
-               }
-          });
-     }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmAuto().setVisible(true);
+            }
+        });
+    }
 
      // Variables declaration - do not modify//GEN-BEGIN:variables
      private javax.swing.JButton btnBuscar;
